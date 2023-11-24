@@ -7,26 +7,26 @@ import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 export default function View() {
   const [boardDetail, setBoardDetail] = useState({});
   const { id } = useParams();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log(`${id}`);
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`/api/board/${id}`);
-        setBoardDetail(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`/api/board/${id}`);
+      setBoardDetail(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
-  }, [id]);
+  }, []);
 
   const handleDelete = async () => {
     const isConfirmed = window.confirm("정말로 삭제하시겠습니까?");
@@ -48,10 +48,14 @@ export default function View() {
       elevation={3}
       style={{ maxWidth: 800, margin: "100px auto", padding: 20 }}
     >
-      <Link to={`/update/${id}`}>수정하기</Link>
-      <br></br>
-      <button onClick={handleDelete}>삭제하기</button>
-
+      <Link to={`/update/${id}`}>
+        <Button variant="contained" color="primary">
+          수정하기
+        </Button>
+      </Link>{" "}
+      <Button variant="contained" color="secondary" onClick={handleDelete}>
+        삭제하기
+      </Button>
       <Typography variant="h4" align="center" gutterBottom>
         {boardDetail.subject}
       </Typography>
@@ -66,6 +70,11 @@ export default function View() {
       </Typography>
       <Divider style={{ margin: "20px 0" }} />
       <Typography variant="body1">{boardDetail.content}</Typography>
+      <Link to="/">
+        <Button variant="contained" color="primary">
+          목록으로
+        </Button>
+      </Link>
     </Paper>
   );
 }

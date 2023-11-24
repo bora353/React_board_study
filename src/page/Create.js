@@ -8,6 +8,7 @@ import Divider from "@mui/material/Divider";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Create() {
   const [subject, setSubject] = useState("");
@@ -67,7 +68,7 @@ export default function Create() {
         value={writer}
         onChange={(e) => setWriter(e.target.value)}
       />
-      <TextField
+      {/* <TextField
         label="날짜"
         variant="outlined"
         fullWidth
@@ -75,7 +76,7 @@ export default function Create() {
         value={regDate}
         disabled
         //onChange={(e) => setRegDate(e.target.value)}
-      />
+      /> */}
       <TextField
         label="내용"
         variant="outlined"
@@ -90,6 +91,11 @@ export default function Create() {
       <Button variant="contained" color="primary" onClick={handleCreatePost}>
         Create
       </Button>
+      <Link to="/">
+        <Button variant="contained" color="secondary">
+          목록으로
+        </Button>
+      </Link>
     </Paper>
   );
 }

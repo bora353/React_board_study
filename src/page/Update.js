@@ -93,7 +93,7 @@ export default function Update() {
         value={writer}
         onChange={(e) => setWriter(e.target.value)}
       />
-      <TextField
+      {/* <TextField
         label="날짜"
         variant="outlined"
         fullWidth
@@ -101,7 +101,7 @@ export default function Update() {
         value={regDate}
         disabled
         //onChange={(e) => setRegDate(e.target.value)}
-      />
+      /> */}
       <TextField
         label="내용"
         variant="outlined"
