@@ -9,11 +9,17 @@ export default function Board() {
   const [boardData, setBoardData] = useState([]);
 
   useEffect(() => {
+    console.log("12345!");
+
     const fetchData = async () => {
       try {
         const response = await axios.get("/api/board");
-        setBoardData(response.data);
-        console.log(response.data);
+
+        if (Array.isArray(response.data)) {
+          setBoardData(response.data);
+          console.log("check!");
+          console.log(response.data);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
